@@ -10,8 +10,9 @@ if (process.env.NODE_ENV === 'test') {
 // This function handles the verification if the information exist or not
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
   DATABASE_URL: z.string(),
-  PORT: z.number().default(3333),
+  PORT: z.coerce.number().default(3333),
 })
 // Check if database url is a string and exist
 // if a error occur,parse throws an error
